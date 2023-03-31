@@ -1,0 +1,17 @@
+In Disaster Recovery plan, we have to consider what is Recovery time objective (RTO) and what is recovery point objective. 
+
+RTO define how many hours we can take to get our application or services available after a disaster. 
+
+RPO define how much data you can loss based on hourly, it is same like how you back up your data. For example, if you define your RPO in 2 hours, it means you will lose 2 hours of data and you have backup for before 2 hours that can restore after disaster. 
+
+1. Minimum RTO for a single AZ outage
+   While a single Az is down, there will be DNS switching time to stand-by AZ and I think it can take a few mininutes (5 min to 10 min). As data is replicated synchronously, the stand-by has nearly real-time data.
+
+2. Minimum RTO for a single region outage
+   If our main region is down, we have to do read-replica in other region to serve as standalone primary database and also switching database endpoint of this other region database. So, we can assume switching read-replia to standalone for 20-30 mins and swithing database endpoints in applicaiton environemnt or some parameter store like AWS system manger parameter store for another 20-30 mins. After all, we can assume RTO will be 40 mins to 1 hours. 
+
+3. Minimum RPO for a single AZ outage 
+   During mutli-az setup, there will be automate backups and this backup will take once a day. There is good feature of AWS that is AWS has transactional log backup that take every 5 mins. This mean we can get back from this before 5 mins of a disaster. So, we can assume RPO can be 5 min to 10 min.
+
+4. Minimum RPO for a single region outage 
+   With using read-replic in other region, our database is using asynchronously to replicate data between read-replica and primarary. But there will be some delay and can't be real time data. So, we can assume at least 10-15 mins of data loss for single region outage. 

@@ -1,0 +1,62 @@
+[ec2-user@ip-10-1-10-161 ~]$ mysql -h udacity-db.crv9npixw58r.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 41
+Server version: 8.0.32 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.01 sec)
+
+MySQL [(none)]> USE udacity;
+Database changed
+MySQL [udacity]> CREATE TABLE student (name VARCHAR(30), course VARCHAR(40), sex CHAR(1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL [udacity]> CREATE TABLE student (name VARCHAR(30), course VARCHAR(40), sex CHAR(1));
+Query OK, 0 rows affected (0.30 sec)
+
+MySQL [udacity]> SHOW tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.01 sec)
+
+MySQL [udacity]> select * from student;
+Empty set (0.00 sec)
+
+MySQL [udacity]> DESCRIBE student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(30) | YES  |     | NULL    |       |
+| course | varchar(40) | YES  |     | NULL    |       |
+| sex    | char(1)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+MySQL [udacity]> INSERT INTO student VALUES('Kaung','AWSArchitect','M');
+Query OK, 1 row affected (0.11 sec)
+
+MySQL [udacity]> select * from student;
++-------+--------------+------+
+| name  | course       | sex  |
++-------+--------------+------+
+| Kaung | AWSArchitect | M    |
++-------+--------------+------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]> 
