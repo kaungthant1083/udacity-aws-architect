@@ -1,0 +1,7 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+Should use VPC endpoint for S3 to access objects from within a VPC. Not using VPC enpoints may lead to access S3 bucket from Internet and there is more potential security risk via accecssing public internet.
+
+# Poor practice 2
+There is port 5000 open for AppTargetGroup and this port is using for UPnP devices and there is some CVEs related with this UPnP devices like CVE-2020-10923, so we should block this port and should disable using UPnP services at our system.

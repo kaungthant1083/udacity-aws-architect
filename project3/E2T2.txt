@@ -1,0 +1,20 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+The following insights and recommendations we got from AWS Config, 
+1. Have to check MFA on Root Account
+2. Have to check for implementing password policy for IAM user
+3. Checks whether the default security group for VPC is closed
+4. Checks whether security groups that are in use disallow unrestricted incoming TCP traffic to the specified ports.
+
+The following potential security issues we got from AWS Inspector
+1. Minimum length for passwords is not configured on Web Server instance C3 in your assessment target.
+2. Web Server Instance C3 is configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key. This increases the likelihood of a successful brute-force attack.
+3. On Web Server Instance C3, process 'python3' is listening on UDP port 5000 which is reachable from the internet
+4. On Web Server Instance C3, TCP port 20, 21, 23 which is associated with 'FTP' is reachable from the internet
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+From recommendations of AWS Inspector, 
+we should edit Web Server Security Group to remove access from the internet on port 20, 21, 23. 
+We should configure your EC2 instance to prevent root account logins over SSH.
+We should use Network ACL to prevent some kind of port accessing from Internet.

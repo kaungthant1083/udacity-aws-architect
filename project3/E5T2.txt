@@ -1,0 +1,18 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+CfN-Guard 
+https://github.com/aws-cloudformation/cloudformation-guard
+### Example vulnerability
+Amazon Simple Storage Service (S3) buckets must have sever side encryption, public reachability to DB instances
+##Scan AMI’s or containers for OS vulnerabilities
+AWS Inspector
+### Example vulnerability
+CVE Findings 
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+AWS Config
+### Example vulnerability
+MFA is disable for root account
+SSH port is opening to Public 
+
